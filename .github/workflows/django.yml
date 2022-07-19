@@ -25,15 +25,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    - name: Set up Safety
+    - name: SCA safety
       continue-on-error: true
       run: |
         safety check --save-json safety-output.json
 
-    - name: Exec bandit
+    - name: SAST bandit
       continue-on-error: true
       run: |
-        bandit -r $GITHUB_WORKSPACE
+        bandit -r $GITHUB_WORKSPACE -f json -o bandit-result.json
         
         
     
