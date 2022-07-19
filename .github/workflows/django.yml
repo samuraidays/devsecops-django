@@ -27,9 +27,8 @@ jobs:
         
     - name: Set up Safety
       continue-on-error: true
-      uses: pyupio/safety@2.0.0
-      with:
-        api-key: ${{ secrets.SAFETY_API_KEY }}
+      run: |
+        safety check --save-json safety-output.json
 
     - name: Exec bandit
       continue-on-error: true
