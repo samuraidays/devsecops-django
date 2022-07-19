@@ -34,7 +34,7 @@ jobs:
     - name: Exec bandit
       continue-on-error: true
       run: |
-      bandit -r /home/runner/work/devsecops-django/devsecops-django/
+        bandit -r /home/runner/work/devsecops-django/devsecops-django/
         
         
     
