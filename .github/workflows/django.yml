@@ -16,10 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
@@ -29,6 +31,12 @@ jobs:
       continue-on-error: true
       run: |
         safety check --save-json safety-output.json
+    
+    - name: SCA safety output save
+      uses: actions/upload-artifact@v2
+      with:
+        name: safety-output.json
+        path: ./safety-output.json
 
     - name: SAST bandit
       continue-on-error: true
