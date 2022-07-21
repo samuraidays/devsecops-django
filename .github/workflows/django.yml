@@ -52,22 +52,24 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
 
+#    - name: SAST bandit
+#      continue-on-error: true
+#      uses: jpetrucciani/bandit-check@master
+#      with:
+#        path: '.'
+#        bandit_flags: '-o bandit-results.sarif -f sarif'
+
     - name: SAST bandit
       continue-on-error: true
-      uses: jpetrucciani/bandit-check@master
-      with:
-        path: '.'
-        bandit_flags: '-o bandit-results.sarif -f sarif'
+      run: |
+        bandit -r $GITHUB_WORKSPACE -f json -o bandit-result.json
 
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: 'bandit-results.sarif'
 
-#    - name: SAST bandit
-#      continue-on-error: true
-#      run: |
-#        bandit -r $GITHUB_WORKSPACE -f json -o bandit-result.json
+
         
         
     
