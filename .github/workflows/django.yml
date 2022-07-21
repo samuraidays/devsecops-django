@@ -62,7 +62,7 @@ jobs:
     - name: SAST bandit
       continue-on-error: true
       run: |
-        bandit -r $GITHUB_WORKSPACE -f sarif -o bandit-result.sarif
+        bandit -r $GITHUB_WORKSPACE -f sarif -o bandit-results.sarif
 
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
