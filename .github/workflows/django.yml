@@ -27,7 +27,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Trivy vulnerability scanner in repo mode
+    - name: SCA - Run Trivy vulnerability scanner in repo mode
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
@@ -36,7 +36,7 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL'
 
-    - name: Upload Trivy scan results to GitHub Security tab
+    - name: SCA - Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: 'trivy-results.sarif'
